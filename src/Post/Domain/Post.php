@@ -24,6 +24,11 @@ class Post extends AggregateRoot
     #[ORM\Column(length: 255)]
     private string $summary;
 
+    /**
+     * @param string $id
+     * @param string $title
+     * @param string $summary
+     */
     public function __construct(string $id, string $title, string $summary)
     {
         $this->id = Uuid::fromString($id);
@@ -40,8 +45,27 @@ class Post extends AggregateRoot
         return new self($id, $title, $summary);
     }
 
+    /**
+     * @return Uuid
+     */
     public function getId(): Uuid
     {
         return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSummary(): string
+    {
+        return $this->summary;
     }
 }
